@@ -8,6 +8,8 @@ def test_Ad():
     for ad_type, ad_name in RAW_DATA:
         ads.append(Ad(ad_type, ad_name))
 
+    r1 = Reimbursement(ads)
+    print(r1)
     breakpoint()
         
 

@@ -27,7 +27,7 @@ class Reimbursement(object):
         '''
         self.summary_dict = {} # indexed by ad_type: {'<ad_type>': <quantity>}
         self.ads = ads
-        self.summary()
+        self.summarize()
 
     def summarize(self):
         '''
@@ -37,7 +37,7 @@ class Reimbursement(object):
     def set_ads(self, ads):
         self.ads = ads
         # reset the summary data structure
-        self.summary()
+        self.summarize()
 
     def get_ad_types(self):
         return set([ad.ad_type for ad in self.ads])
@@ -71,6 +71,9 @@ class Reimbursement(object):
         Ad(0011) - cost share rate = .50 and spend per ad is $200(reimbursement amount)
         Ad(0011)
         '''
+
+    def __str__(self):
+        return '\n'.join([str(ad) for ad in self.ads])
     
 
 
@@ -90,6 +93,7 @@ class Ad(object):
     def __init__(self, ad_type, ad_name):
 
         self.ad_type = ad_type
+        self.ad_name = ad_name
 
     def __str__(self):
         return f'Ad_type: {self.ad_type} ... {self.ad_name}'
