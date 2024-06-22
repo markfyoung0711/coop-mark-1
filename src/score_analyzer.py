@@ -61,4 +61,10 @@ def score_analyzer(df):
     if errors_idx.any():
         raise Exception(f'"risk_group_1" values null: {df[errors_idx]}')
 
+    # for risk group 1 scores, create columns for each of the categories so they can be plotted against one another
+    risk_group_names = df['risk_1_group'].unique()
+    for group_name in risk_group_names:
+        idx = df['risk_1_group'] == group_name
+        df.loc[idx, group_name] = df.loc[idx, 'score_1']
+
     return df
